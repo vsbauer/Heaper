@@ -1,9 +1,11 @@
 package com.vsbauer.androidApp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.vsbauer.shared.Greeting
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.ui.platform.setContent
+import com.vsbauer.shared.Greeting
+import com.vsbauer.shared.TaskItem
 
 fun greet(): String {
     return Greeting().greeting()
@@ -12,9 +14,9 @@ fun greet(): String {
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
+        val list = listOf<TaskItem>(TaskItem("asfkasjf", TaskItem.Data(isDone = false, text = "KEK")))
+        setContent {
+            UserList(taskList =list)
+        }
     }
 }
